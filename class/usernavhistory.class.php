@@ -542,10 +542,13 @@ class UserNavHistory extends CommonObject
 	{
 		global $conf, $langs, $db, $action, $hookmanager;
 
-        /**
-         * TODO factoriser cette méthode lorsque cette PR sera passée : https://github.com/Dolibarr/dolibarr/pull/21674
-         * pour prendre en compte la rétrocompatibilité
-         */
+        if(function_exists('fetchObjectByElement')){
+        	$res = fetchObjectByElement($elementid, $elementtype);
+        	// if error carry on
+        	if($res || $res == 0){
+        		return $res;
+			}
+		}
 
 		$ret = -1;
 		$regs = array();
@@ -880,7 +883,7 @@ class UserNavHistory extends CommonObject
 	 * @param string $url
 	 * @return string
 	 */
-	public static function getMainMenuFromElement(string $url) : string|null {
+	public static function getMainMenuFromElement(string $url) {
 		global $db;
 
 		// Vérifier si "custom" est présent dans l'URL

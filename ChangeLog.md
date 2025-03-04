@@ -6,6 +6,8 @@
 
 ## 1.3
 
+- FIX : Dolibarr 20 compat - *04/03/2025* - 1.3.2
+- FIX : Php 7.4 fatal error compatibility - *04/03/2025* - 1.3.1
 - FIX : Compat v20 
   Changed Dolibarr compatibility range to 16 min - 20 max
   Changed PHP compatibility range to 7.0 min - *24/07/2024* - 1.3.0
