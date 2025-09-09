@@ -282,14 +282,19 @@ class UserNavHistory extends CommonObject
 			$num = $this->db->num_rows($resql);
 			$i = 0;
 			while ($i < ($limit ? min($limit, $num) : $num)) {
-				$obj = $this->db->fetch_object($resql);
+				try {
+					$obj = $this->db->fetch_object($resql);
 
-				$record = new self($this->db);
-				$record->setVarsFromFetchObj($obj);
-				$record->object = $this->getObjectByElement($record->element_type, $record->element_id);
+					$record = new self($this->db);
+					$record->setVarsFromFetchObj($obj);
+					$record->object = $this->getObjectByElement($record->element_type, $record->element_id);
 
-				if($record->object){
-					$records[$record->id] = $record;
+					if($record->object){
+						$records[$record->id] = $record;
+					}
+
+				} catch (Exception $e){
+
 				}
 
 				$i++;
@@ -885,6 +890,10 @@ class UserNavHistory extends CommonObject
 	 */
 	public static function getMainMenuFromElement(string $url) {
 		global $db;
+
+		if(empty($url)) {
+			return '';
+		}
 
 		// Vérifier si "custom" est présent dans l'URL
 		if (strpos($url, 'custom') !== false) {
