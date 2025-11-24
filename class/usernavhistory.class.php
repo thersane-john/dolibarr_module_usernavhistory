@@ -893,9 +893,10 @@ class UserNavHistory extends CommonObject
 	public static function getMainMenuFromElement(string $url) {
 		global $db;
 
-		if(empty($url)) {
+		if(empty($url) || empty(DOL_URL_ROOT)) {
 			return '';
 		}
+
 		error_log('DOL_URL_ROOT = ' . DOL_URL_ROOT, 0);
 		// Vérifier si "custom" est présent dans l'URL
 		if (strpos($url, 'custom') !== false) {
