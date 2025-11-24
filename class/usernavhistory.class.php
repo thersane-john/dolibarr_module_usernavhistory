@@ -897,7 +897,6 @@ class UserNavHistory extends CommonObject
 			return '';
 		}
 
-		error_log('DOL_URL_ROOT = ' . DOL_URL_ROOT, 0);
 		// Vérifier si "custom" est présent dans l'URL
 		if (strpos($url, 'custom') !== false) {
 			// Extraire la partie de l'URL après "custom" et avant le premier "?"
