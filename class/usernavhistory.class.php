@@ -900,13 +900,22 @@ class UserNavHistory extends CommonObject
 		// Vérifier si "custom" est présent dans l'URL
 		if (strpos($url, 'custom') !== false) {
 			// Extraire la partie de l'URL après "custom" et avant le premier "?"
-			$urlPartie = substr($url, strpos($url, 'custom') + strlen('custom'), strpos($url, '?') - strpos($url, 'custom'));
+			$urlPartie = substr($url,
+								strpos($url, 'custom') + strlen('custom'),
+								strpos($url, '?') - strpos($url, 'custom')
+			);
 		// sinon htdocs
 		}elseif (strpos($url, 'htdocs') !== false) {
-			$urlPartie = substr($url, strpos($url, 'htdocs') + strlen('htdocs'), strpos($url, '?') - strpos($url, 'htdocs'));
+			$urlPartie = substr($url,
+								strpos($url, 'htdocs') + strlen('htdocs'),
+								strpos($url, '?') - strpos($url, 'htdocs')
+			);
 		// sinon le nom de domaine
 		}else{
-			$urlPartie = substr($url, strpos($url, DOL_URL_ROOT) + strlen(DOL_URL_ROOT), strpos($url, '?') - strpos($url, DOL_URL_ROOT));
+			$urlPartie = substr($url,
+								strpos($url, DOL_URL_ROOT) + strlen(DOL_URL_ROOT),
+								strpos($url, '?') - strpos($url, DOL_URL_ROOT)
+			);
 		}
 
 		// Vérifier s'il y a un paramètre dans l'URL restante et le supprimer
